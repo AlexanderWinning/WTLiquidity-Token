@@ -2,7 +2,7 @@
 pragma solidity >=0.6.12;
 
 import "./BEP20.sol";
-import "Token.sol";
+import "./Token.sol";
 
 contract WTLiquidity is BEP20("WTLiquidity", "WTLiquidityAddress"){
 
