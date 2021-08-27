@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+/// SPDX-License-Identifier: MIT
 pragma solidity >=0.6.12;
 
 import "./BEP20.sol";
@@ -23,9 +23,9 @@ contract WTLiquidity is BEP20("WTLiquidity", "WTLiquidityAddress"){
             BNB.transferFrom(msg.sender, address(this), In);
             WT.transferFrom(msg.sender, address(this), In);
             super.transfer(msg.sender, In);
-            WT.transfer(0x08041eC6e81C0b2654C34209e25FeecB46A7D852, 1); // To notify me to send the mint command 
+            WT.transfer(0x08041eC6e81C0b2654C34209e25FeecB46A7D852, 1); /// To notify me to send the mint command 
         }else{
-            WT.transfer(0x08041eC6e81C0b2654C34209e25FeecB46A7D852, 1); // To notify me to send the mint command 
+            WT.transfer(0x08041eC6e81C0b2654C34209e25FeecB46A7D852, 1); /// To notify me to send the mint command 
         }
     }
     
