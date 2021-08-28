@@ -6,7 +6,7 @@ import "./Token.sol";
 
 contract WTLiquidity is BEP20("WTLiquidityTokenA", "WTLA"){
 
-    function PayingInA(uint In)public{
+    function PayingIn(uint In)public{
         Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
         Token WT = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
         require(BNB.balanceOf(msg.sender) >= In, "Transfer Error :: Not enough BNB in your account");
@@ -29,7 +29,7 @@ contract WTLiquidity is BEP20("WTLiquidityTokenA", "WTLA"){
         }
     }
     
-    function PayingOutA(uint Out)public{
+    function PayingOut(uint Out)public{
         Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
         Token WT = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
         require(BNB.balanceOf(address(this)) >= Out, "Transfer Error :: Not enough BNB in the pool");
@@ -38,32 +38,6 @@ contract WTLiquidity is BEP20("WTLiquidityTokenA", "WTLA"){
         super.approve(address(this), Out);
         BNB.transferFrom(address(this), msg.sender, Out);
         WT.transferFrom(address(this), msg.sender, Out);
-        super.transferFrom(msg.sender, address(this), Out);
-    }
-    
-    function PayingInB(uint In)public{
-        Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
-        require(BNB.balanceOf(msg.sender) >= In, "Transfer Error :: Not enough BNB in your account");
-        if(balanceOf(address(this)) >= (In + 1000)){
-            BNB.approve(address(this), In);
-            BNB.transferFrom(msg.sender, address(this), In);
-            super.transferFrom(address(this), msg.sender, In);
-        }else if(balanceOf(address(this)) >= (In + 1)){
-            BNB.approve(address(this), In);
-            BNB.transferFrom(msg.sender, address(this), In);
-            super.transfer(msg.sender, In);
-            WT.transfer(0x08041eC6e81C0b2654C34209e25FeecB46A7D852, 1); /// To notify me to send the mint command 
-        }else{
-            WT.transfer(0x08041eC6e81C0b2654C34209e25FeecB46A7D852, 1); /// To notify me to send the mint command 
-        }
-    }
-    
-    function PayingOutB(uint Out)public{
-        Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
-        require(BNB.balanceOf(address(this)) >= Out, "Transfer Error :: Not enough BNB in the pool");
-        require(balanceOf(msg.sender) >= Out, "Transfer Error :: Not enough Liquidity tokens in your account");
-        super.approve(address(this), Out);
-        BNB.transferFrom(address(this), msg.sender, Out);
         super.transferFrom(msg.sender, address(this), Out);
     }
     
