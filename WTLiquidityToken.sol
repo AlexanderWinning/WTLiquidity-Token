@@ -44,7 +44,7 @@ contract WTLiquidity is BEP20("WTLiquidityTokenA", "WTLA"){
     function price()public returns(uint){
         Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
         Token WT = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
-        uint Price = ((BNB.balanceOf(address(this)) / WT.balanceOf(address(this))) * 100);
+        uint Price = ((BNB.balanceOf(address(this)) / WT.balanceOf(address(this))) * 100); // multiplied by 100 to bypass the fixed point numbers implementation
         return Price;
     }
 }
