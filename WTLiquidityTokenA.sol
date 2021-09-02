@@ -7,8 +7,8 @@ import "./Token.sol";
 contract WTLiquidity is BEP20("WTLiquidityTokenA", "WTLA"){
 
     function PayingIn(uint In)public{
-        Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
-        Token WT = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
+        Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852); /// Replace with token addresses
+        Token WT = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852); /// Replace with token addresses
         require(BNB.balanceOf(msg.sender) >= In, "Transfer Error :: Not enough BNB in your account");
         require(WT.balanceOf(msg.sender) >= In, "Transfer Error :: Not enough WT in your account");
         if(balanceOf(address(this)) >= (In + 1000)){
@@ -30,8 +30,8 @@ contract WTLiquidity is BEP20("WTLiquidityTokenA", "WTLA"){
     }
     
     function PayingOut(uint Out)public{
-        Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
-        Token WT = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
+        Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852); /// Replace with token addresses
+        Token WT = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852); /// Replace with token addresses
         require(BNB.balanceOf(address(this)) >= Out, "Transfer Error :: Not enough BNB in the pool");
         require(WT.balanceOf(address(this)) >= Out, "Transfer Error :: Not enough WT in the pool");
         require(balanceOf(msg.sender) >= Out, "Transfer Error :: Not enough Liquidity tokens in your account");
@@ -41,10 +41,10 @@ contract WTLiquidity is BEP20("WTLiquidityTokenA", "WTLA"){
         super.transferFrom(msg.sender, address(this), Out);
     }
     
-    function price()public returns(uint){
-        Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
-        Token WT = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// replace with token addresses
-        uint Price = ((BNB.balanceOf(address(this)) / WT.balanceOf(address(this))) * 100); // multiplied by 100 to bypass the fixed point numbers implementation
+    function price()public returns(uint){ /// Used by exchanges to trade crypto
+        Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852); /// Replace with token addresses
+        Token WT = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852); /// Replace with token addresses
+        uint Price = ((BNB.balanceOf(address(this)) / WT.balanceOf(address(this))) * 100); /// Multiplied by 100 to bypass the fixed point numbers implementation
         return Price;
     }
 }
