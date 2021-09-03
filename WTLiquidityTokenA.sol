@@ -4,7 +4,7 @@ pragma solidity >=0.6.12;
 import "./BEP20.sol";
 import "./Token.sol";
 
-contract WTLiquidity is BEP20("WTLiquidityTokenA", "WTLA"){
+contract WTLiquidity is BEP20("WTLiquidityToken", "WTLT"){
 
     function PayingIn(uint In)public{
         Token BNB = Token(0x08041eC6e81C0b2654C34209e25FeecB46A7D852);/// Replace with token addresses
