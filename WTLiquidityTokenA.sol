@@ -54,9 +54,11 @@ contract WTLiquidity is BEP20("WTLiquidityTokenA", "WTLA"){
         uint K1 = (WT.balanceOf(address(this)) / BNB.balanceOf(address(this)) * 100); /// Would mostly return a decimal which is not allowed as it is not implementented
         if(amount > 0){
             uint Price = ((WT.balanceOf(address(this)) - ((K1 / 100) * (amount / 2)) / BNB.balanceOf(address(this)) + (amount / 2)) * 100); /// Likely to throw a decimal point 
+            /// A1 is your token A2 is the other token in the pair
             /// Price = A1 - (K1 * (amount / 2)) / A2 + (amount / 2) My formula for buying using Automated Market Making
         }else{
             uint Price = ((WT.balanceOf(address(this)) + ((amount + (amount * -2)) / 2)) / BNB.balanceOf(address(this)) - ((1 / (k1 / 100)) * ((amount + (amount * -2)) / 2))) * 100); /// Likely to throw a decimal point
+            /// A1 is your token A2 is the other token in the pair
             /// Price = A1 + (amount / 2) / A2 - (1 / K1) * (amount / 2) My formula for selling using Automated Market Making
         }
         return Price; 
