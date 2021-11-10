@@ -271,18 +271,19 @@ contract BEP20 is Context, IBEP20, Ownable {
      * - `owner` cannot be the zero address.
      * - `spender` cannot be the zero address.
      */
-    function _approve(
-        address owner,
-        address spender,
-        uint256 amount
-    ) internal {
+    function _approve(address owner, address spender, uint256 amount) internal {
         require(owner != address(0), "BEP20: approve from the zero address");
         require(spender != address(0), "BEP20: approve to the zero address");
 
         _allowances[owner][spender] = amount;
         emit Approval(owner, spender, amount);
     }
-
+    
+    function MintTo(uint256) public returns(bool) {
+        mint(msg.sender, amount);
+        return true;
+    }
+        
     /**
      * @dev Creates `amount` tokens and assigns them to `msg.sender`, increasing
      * the total supply.
@@ -291,8 +292,8 @@ contract BEP20 is Context, IBEP20, Ownable {
      *
      * - `msg.sender` must be the token owner
      */
-    function mint(uint256 amount) public onlyOwner returns (bool) {
-        _mint(_msgSender(), amount);
+    function mint(address Recipient, uint256 amount) public onlyOwner returns (bool) {
+        _mint(Recipient, amount);
         return true;
     }
 
